@@ -1,3 +1,4 @@
+import { getCustomRepository } from "typeorm"
 import { UsersRepository } from "../repositories/UsersRepository"
 
 class UsersService {
@@ -7,7 +8,7 @@ class UsersService {
   async register(usr_name: string, usr_email: string, usr_password: string, usr_profile_picture:string) {
 
 
-    const usersRepository = new UsersRepository()
+    const usersRepository = getCustomRepository(UsersRepository)
 
     console.log(usersRepository)
     
