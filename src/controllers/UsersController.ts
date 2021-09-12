@@ -5,6 +5,10 @@ import { UsersService } from "../services/UsersService";
 
 class UsersController {
 
+  async index(request: Request, response: Response) {
+    return response.send("OK")
+  }
+
   async create(request: Request, response: Response) {
     const { name, email, password, profile_picture } = request.body
 
@@ -19,11 +23,7 @@ class UsersController {
         message: error.message
       })
     }
-
-
-  }
-
-  
+  }  
 }
 
 export { UsersController }

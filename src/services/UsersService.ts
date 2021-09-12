@@ -9,8 +9,6 @@ class UsersService {
 
 
     const usersRepository = getCustomRepository(UsersRepository)
-
-    console.log(usersRepository)
     
     const user = usersRepository.create({
       usr_name,

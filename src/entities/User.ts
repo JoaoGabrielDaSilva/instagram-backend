@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm"
 import {v4 as uuid} from 'uuid'
+import bcrypt from 'bcrypt'
 
 @Entity('users')
 class User {
@@ -27,6 +28,12 @@ class User {
 
   @UpdateDateColumn()
   usr_updated_at: Date
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    this.usr_password = bcrypt.hashSync(this.usr_password, 10)
+  }
 
   constructor() {
     if (!this.usr_id) {
