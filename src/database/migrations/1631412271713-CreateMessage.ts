@@ -7,36 +7,50 @@ export class CreateMessage1631412271713 implements MigrationInterface {
             name: 'messages',
             columns: [
                 {
-                    name: 'msg_id',
+                    name: 'id',
                     type: 'uuid',
                     isPrimary: true
                 },
                 {
-                    name: 'msg_chat_id',
+                    name: 'chat_id',
                     type: 'uuid',
                 },
                 {
-                    name: 'msg_text',
+                    name: 'text',
                     type: 'varchar(500)',
                 },
                 {
-                    name: 'msg_created_at',
+                    name: 'created_at',
                     type: 'timestamp',
                     default: 'now()'
                 },
+                {
+                    name: 'user_id',
+                    type: 'varchar',
+                    isNullable: true
+                }
             ],
             foreignKeys: [{
-                name: 'FKChat',
+                name: 'FKMessageChat',
                 referencedTableName: 'chats',
-                referencedColumnNames: ['chat_id'],
-                columnNames: ['msg_chat_id'],
+                referencedColumnNames: ['id'],
+                columnNames: ['chat_id'],
                 onDelete: "SET NULL",
                 onUpdate: "SET NULL"
+            },
+            {
+                name: 'FKMessageUser',
+                referencedTableName: 'users',
+                referencedColumnNames: ['id'],
+                columnNames: ['user_id'],
+                onDelete: "SET NULL",
+                onUpdate: "SET NULL",
             }]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('messages')
     }
 
 }

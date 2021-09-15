@@ -7,7 +7,7 @@ export class CreateChat1631412154332 implements MigrationInterface {
             name: 'chats',
             columns: [
                 {
-                    name: 'chat_id',
+                    name: 'id',
                     type: 'uuid',
                     isPrimary: true
                 },

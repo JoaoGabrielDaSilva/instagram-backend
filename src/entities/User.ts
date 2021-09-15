@@ -1,43 +1,53 @@
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm"
 import {v4 as uuid} from 'uuid'
 import bcrypt from 'bcrypt'
+import { UserChat } from "./UserChat"
+import { Chat } from "./Chat"
+import { Message } from "./Message"
 
 @Entity('users')
 class User {
 
+
+
+
+  @OneToMany(() => Message, message => message.user)
+  @JoinColumn({name: 'id'})
+  message: Message
+
   @PrimaryColumn()
-  usr_id: string
+  id: string
 
   @Column()
-  usr_name: string
+  name: string
 
   @Column()
-  usr_email: string
+  email: string
 
   @Column()
-  usr_password: string
+  password: string
   
   @Column()
-  usr_profile_picture: string
+  profile_picture: string
 
   @Column()
-  usr_socket_id: string
+  socket_id: string
 
   @CreateDateColumn()
-  usr_created_at: Date
+  created_at: Date
 
   @UpdateDateColumn()
-  usr_updated_at: Date
+  updated_at: Date
 
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {
-    this.usr_password = bcrypt.hashSync(this.usr_password, 10)
+    this.password = bcrypt.hashSync(this.password, 10)
   }
 
   constructor() {
-    if (!this.usr_id) {
-      this.usr_id = uuid()
+    if (!this.id) {
+      this.id = uuid()
     }
   }
 }

@@ -7,33 +7,33 @@ export class CreateUserChat1631411703755 implements MigrationInterface {
             name: 'users_chats',
             columns: [
                 {
-                    name: 'usrc_id',
+                    name: 'id',
                     type: 'uuid',
                     isPrimary: true
                 },
                 {
-                    name: 'usrc_user_id',
+                    name: 'user_id',
                     type: 'uuid'
                 },
                 {
-                    name: 'usrc_chat_id',
+                    name: 'chat_id',
                     type: 'uuid'
                 },
             ],
             foreignKeys: [
             {
-                name: 'FKUser',
+                name: 'FKUserChatsUser',
                 referencedTableName: 'users',
-                referencedColumnNames: ['usr_id'],
-                columnNames: ['usrc_user_id'],
+                referencedColumnNames: ['id'],
+                columnNames: ['user_id'],
                 onDelete: "SET NULL",
                 onUpdate: "SET NULL"
             },
             {
-                name: 'FKChat',
+                name: 'FKUserChatsChat',
                 referencedTableName: 'chats',
-                referencedColumnNames: ['chat_id'],
-                columnNames: ['usrc_chat_id'],
+                referencedColumnNames: ['id'],
+                columnNames: ['chat_id'],
                 onDelete: "SET NULL",
                 onUpdate: "SET NULL"
             },

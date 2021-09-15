@@ -7,39 +7,39 @@ export class CreateUser1631321413534 implements MigrationInterface {
             name: 'users',
             columns: [
                 {
-                    name: 'usr_id',
+                    name: 'id',
                     type: 'uuid',
                     isPrimary: true
                 },
                 {
-                    name: 'usr_name',
+                    name: 'name',
                     type: 'varchar',
                 },
                 {
-                    name: 'usr_email',
+                    name: 'email',
                     type: 'varchar',
                 },
                 {
-                    name: 'usr_password',
+                    name: 'password',
                     type: 'varchar',
                 },
                 {
-                    name: 'usr_profile_picture',
-                    type: 'varchar',
-                    isNullable: true,
-                },
-                {
-                    name: 'usr_socket_id',
+                    name: 'profile_picture',
                     type: 'varchar',
                     isNullable: true,
                 },
                 {
-                    name: 'usr_created_at',
+                    name: 'socket_id',
+                    type: 'varchar',
+                    isNullable: true,
+                },
+                {
+                    name: 'created_at',
                     type: 'timestamp',
                     default: 'now()'
                 },
                 {
-                    name: 'usr_updated_at',
+                    name: 'updated_at',
                     type: 'timestamp',
                     default: 'now()'
                 },
